@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../util/database");
 
 const Person = sequelize.define(
-  "PERSON",
+  "person",
   {
     SSN: {
       type: Sequelize.CHAR(12),
@@ -11,17 +11,16 @@ const Person = sequelize.define(
     },
     Fname: {
       type: Sequelize.STRING(40),
-      allowNull: false,
     },
     Lname: {
       type: Sequelize.STRING(40),
-      allowNull: false,
     },
     address: {
       type: Sequelize.STRING(100),
     },
     phone: {
       type: Sequelize.STRING(15),
+      unique: true,
     },
   },
   {
@@ -31,7 +30,7 @@ const Person = sequelize.define(
 );
 
 const Trainee = sequelize.define(
-  "TRAINEE",
+  "trainee",
   {
     SSN: {
       type: Sequelize.CHAR(12),
@@ -41,9 +40,9 @@ const Trainee = sequelize.define(
       type: Sequelize.DATE,
     },
     photo: {
-      type: Sequelize.STRING(100),
+      type: Sequelize.STRING(200),
     },
-    company_ID: {
+    company_id: {
       type: Sequelize.CHAR(4),
     },
   },
@@ -52,6 +51,7 @@ const Trainee = sequelize.define(
     freezeTableName: true,
   }
 );
+Trainee.hasOne(Person, { foreignKey: "SSN" });
+Person.belongsTo(Trainee, { foreignKey: "SSN" });
 
-module.exports = Trainee;
-module.exports = Person;
+module.exports = { Trainee, Person };

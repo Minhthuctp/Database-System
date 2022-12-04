@@ -1,0 +1,21 @@
+<header>
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <title>Home</title>
+  <div class="container">
+    <h1 class="logo">Hello, <%=name %></h1>
+
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/addtrainee">Add Trainee</a></li>
+        <li><a href="/searchtrainee">Search Trainee</a></li>
+        <li><a href="/getresult">Get Result</a></li>
+        <% if (check == false) { %>
+        <li><a href="/login">Log in</a></li>
+        <% } else { %>
+        <li><a href="/logout">Log out</a></li>
+        <% } %>
+      </ul>
+    </nav>
+  </div>
+</header>

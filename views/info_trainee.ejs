@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/table.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <title>Trainee information</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="logo">Hello, <%=name%></h1>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/addtrainee">Add Trainee</a></li>
+            <li><a href="/searchtrainee">Search Trainee</a></li>
+            <li><a href="/getresult">Get Result</a></li>
+            <li><a href="/logout">Log out</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <h1 class="center">Information of <%=user.Fullname%></h1>
+    <table class="styled-table">
+      <tr>
+        <th>SSN</th>
+        <th><%=user.SSN; %></th>
+      </tr>
+      <tr>
+        <td>Fullname</td>
+        <td><%=user.Fullname%></td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td><%=user.phone%></td>
+      </tr>
+      <tr>
+        <td>Address</td>
+        <td><%=user.address%></td>
+      </tr>
+      <tr>
+        <td>Photo</td>
+        <td><%=user.photo%></td>
+      </tr>
+      <tr>
+        <td>Number of seasons participating</td>
+        <td><%=user.num_season%></td>
+      </tr>
+      <tr>
+        <td>Best achievement</td>
+        <td><%=user.last_episode%></td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -4,13 +4,27 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+const dotenv = require("dotenv");
+
+dotenv.config();
+
 const sequelize = require("./util/database");
 
 const loginrouter = require("./routes/login");
 
 const managerrouter = require("./routes/manager");
 
-app.use(bodyParser.urlencoded({ extends: true }));
+const path = require("path");
+
+app.set("view engine", "ejs");
+
+app.set("views", "views");
+
+app.use(bodyParser.urlencoded({ extends: false }));
+
+app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, "public")));
 
 sequelize
   .sync()

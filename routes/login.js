@@ -4,10 +4,12 @@ const router = express.Router();
 
 const loginController = require("../controllers/login");
 
-router.get("/", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "..", "views", "login.html"));
+router.get("/login", (req, res, next) => {
+  res.render("login.ejs", { warning: "" });
 });
 
-router.post("/", loginController.postChecklogin);
+router.post("/login", loginController.postChecklogin);
+
+router.get("/logout", loginController.getLogout);
 
 module.exports = router;

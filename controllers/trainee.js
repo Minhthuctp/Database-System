@@ -7,6 +7,14 @@ const sequelize = require("../util/database");
 const Sequelize = require("sequelize");
 
 exports.postaddTrainee = (req, res, next) => {
+  if (req.body.Fname == "") req.body.Fname = null;
+  if (req.body.Lname == "") req.body.DoB = null;
+  if (req.body.SSN == "") req.body.SSN = null;
+  if (req.body.address == "") req.body.address = null;
+  if (req.body.phone == "") req.body.phone = null;
+  if (req.body.DoB == "") req.body.DoB = null;
+  if (req.body.photo == "") req.body.photo = null;
+  if (req.body.company_id == "") req.body.company_id = null;
   const SSN = req.body.SSN;
   const Fname = req.body.Fname;
   const Lname = req.body.Lname;
@@ -14,7 +22,6 @@ exports.postaddTrainee = (req, res, next) => {
   const phone = req.body.phone;
   const DoB = req.body.DoB;
   const photo = req.body.photo;
-  if (req.body.company_ID == "") req.body.company_ID = null;
   const company_id = req.body.company_ID;
   const allcokiee = req.get("Cookie").split(";");
   let name = "";
@@ -29,7 +36,7 @@ exports.postaddTrainee = (req, res, next) => {
     Lname: Lname,
     address: address,
     phone: phone,
-  }) //.catch((err) => console.log(err));
+  })
     .then(() => {
       Trainee.create({
         SSN: SSN,
@@ -61,6 +68,7 @@ exports.serchTrainee = (req, res, next) => {
   if (req.body.fullname != undefined) {
     const [FFname, FLname] = req.body.fullname.split(" ");
     Person.findAll({
+      include: [{ model: Trainee, required: true }],
       where: {
         Fname: Sequelize.fn("lower", FFname),
         Lname: Sequelize.fn("lower", FLname),
@@ -105,7 +113,11 @@ exports.getResult = (req, res, next) => {
     if (cookiee.trim().split("=")[0] == "Fullname")
       name = cookiee.trim().split("=")[1];
   });
-  if (req.body.SSN != undefined && req.body.Season != undefined) {
+  if (
+    req.body.SSN != undefined &&
+    (req.body.Season != undefined) & (req.body.SSN != "") &&
+    req.body.Season != ""
+  ) {
     const SSN = req.body.SSN;
     const Syear = req.body.Season;
     sequelize

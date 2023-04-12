@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/form.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/table.css" />
+    <title>Result</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="logo">Hello, <%=name%></h1>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/addtrainee">Add Trainee</a></li>
+            <li><a href="/searchtrainee">Search Trainee</a></li>
+            <li><a href="/getresult">Get Result</a></li>
+            <li><a href="/logout">Log out</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <form method="POST">
+      <ul class="form-style-1">
+        <li>
+          <label class="divided-label">SSN</label>
+          <label class="divided-label">Season</label>
+          <input type="text" name="SSN" class="field-divided" />
+
+          <input type="number" name="Season" class="field-divided" />
+        </li>
+        <li>
+          <input type="submit" value="Search" />
+        </li>
+      </ul>
+    </form>
+    <% if (season_result!="") {%>
+    <table class="styled-table">
+      <tr>
+        <th>Episode</th>
+        <th>Number of votes/ average score</th>
+      </tr>
+
+      <% if(season_result.length!=0){ season_result.forEach(function(data){ %>
+      <tr>
+        <td><%=data.Episode; %></td>
+        <% if (!data['Num of votes/ avg score']) {%>
+        <td>NULL</td>
+        <% } else { %>
+        <td><%=data['Num of votes/ avg score'] %></td>
+        <% } %>
+      </tr>
+      <% }) %> <% } else{ %>
+      <tr>
+        <td colspan="7">No Data Found</td>
+      </tr>
+      <% } %>
+    </table>
+    <% } %>
+  </body>
+</html>

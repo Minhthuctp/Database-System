@@ -1,0 +1,33 @@
+
+<head>
+  <link rel="stylesheet"  type="text/css" href="/css/login.css"></link>
+  <link rel="stylesheet"  type="text/css" href="/css/main.css"></link>
+  <title>Log in</title>
+</head>
+<header>
+  <div class="container">
+    <h1 class="logo">Hello, Guest</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/addtrainee">Add Trainee</a></li>
+        <li><a href="/searchtrainee">Search Trainee</a></li>
+        <li><a href="/getresult">Get Result</a></li>
+        <li><a href="/login">Log in</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="login">
+    
+    <h2 class="login-header">Log in</h2>
+  
+    <form METHOD="POST" class="login-container" name="login">
+      <p class="warning"><%=warning%></p>
+      <p><input type="username" placeholder="Username" name="username"></p>
+      <p><input type="password" placeholder="Password" name="password"></p>
+      <input type="submit" value="Log in">
+    </form>
+  </div>
+</div>

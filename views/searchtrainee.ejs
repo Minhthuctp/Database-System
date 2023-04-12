@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/form.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/table.css" />
+    <title>Search Trainee</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="logo">Hello, <%=name%></h1>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/addtrainee">Add Trainee</a></li>
+            <li><a href="/searchtrainee">Search Trainee</a></li>
+            <li><a href="/getresult">Get Result</a></li>
+            <li><a href="/logout">Log out</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <form method="POST">
+      <ul class="form-style-1">
+        <li>
+          <input
+            type="text"
+            name="fullname"
+            class="field-long middle"
+            placeholder="Full name"
+          />
+        </li>
+        <li>
+          <input type="submit" value="Search" />
+        </li>
+      </ul>
+    </form>
+    <% if (userData!="") {%>
+    <table class="styled-table">
+      <tr>
+        <th>SSN</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>View</th>
+      </tr>
+
+      <% if(userData.length!=0){ userData.forEach(function(data){ %>
+      <tr>
+        <td><%=data.SSN; %></td>
+        <td><%=data.Fname %></td>
+        <td><%=data.Lname %></td>
+        <td><a href="/users/view?SSN=<%=data.SSN%>">View</a></td>
+      </tr>
+      <% }) %> <% } else{ %>
+      <tr>
+        <td colspan="7">No Data Found</td>
+      </tr>
+      <% } %> <% } %>
+    </table>
+  </body>
+</html>
